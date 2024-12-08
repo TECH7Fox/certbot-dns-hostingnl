@@ -5,6 +5,8 @@ setup(
     url='https://github.com/TECH7Fox/certbot-dns-hostingnl',
     use_scm_version=True,
     setup_requires=['setuptools_scm'],
+    description='Hosting.nl DNS Authenticator plugin for Certbot',
+    license='MIT',
     long_description=open('README.md').read(),
     long_description_content_type='text/markdown',
     install_requires=[
