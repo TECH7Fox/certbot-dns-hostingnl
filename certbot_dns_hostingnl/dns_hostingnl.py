@@ -142,18 +142,21 @@ class _HostingnlClient:
         :param str domain: The domain to use to look up the Hostingnl zone.
         :param str record_id: The record ID to delete.
         """
+
+        logger.debug(f"Attempting to delete record with record_id: {record_id}")
         data = [{
             "id": record_id,
         }]
 
         try:
             url = f"{self.api_url}/domains/{domain}/dns"
-            response = requests.get(
+            response = requests.delete(
                 url,
                 headers={"API-TOKEN": self.api_key},
                 json=data,
             )
             response.raise_for_status()
+            logger.debug(f"Response: {response.json()}")
         except Exception as e:
             logger.debug('Encountered error finding zone_id during deletion: %s', e)
             return
