@@ -1,0 +1,170 @@
+2024-12-08 08:53:38,287:DEBUG:certbot._internal.main:certbot version: 3.0.1
+2024-12-08 08:53:38,287:DEBUG:certbot._internal.main:Location of certbot entry point: /home/jordyk/repositories/personal/certbot-dns-hostingnl/vendor/bin/certbot
+2024-12-08 08:53:38,287:DEBUG:certbot._internal.main:Arguments: ['--authenticator', 'dns-hostingnl', '-d', 'tech7fox.nl', '--config-dir', './certbot_stuff/', '--work-dir', 'certbot_stuff/', '--logs-dir', 'certbot_stuff/']
+2024-12-08 08:53:38,287:DEBUG:certbot._internal.main:Discovered plugins: PluginsRegistry(PluginEntryPoint#dns-hostingnl,PluginEntryPoint#manual,PluginEntryPoint#null,PluginEntryPoint#standalone,PluginEntryPoint#webroot)
+2024-12-08 08:53:38,293:DEBUG:certbot._internal.log:Root logging level set at 30
+2024-12-08 08:53:38,293:DEBUG:certbot._internal.plugins.selection:Requested authenticator dns-hostingnl and installer None
+2024-12-08 08:53:38,293:DEBUG:certbot._internal.plugins.selection:Single candidate plugin: * dns-hostingnl
+Description: Obtain certificates using a DNS TXT record (if you are using Hostingnl for DNS).
+Interfaces: Authenticator, Plugin
+Entry point: EntryPoint(name='dns-hostingnl', value='certbot_dns_hostingnl._internal.dns_hostingnl:Authenticator', group='certbot.plugins')
+Initialized: <certbot_dns_hostingnl._internal.dns_hostingnl.Authenticator object at 0x72464b7f80e0>
+Prep: True
+2024-12-08 08:53:38,293:DEBUG:certbot._internal.plugins.selection:Selected authenticator <certbot_dns_hostingnl._internal.dns_hostingnl.Authenticator object at 0x72464b7f80e0> and installer None
+2024-12-08 08:53:38,293:INFO:certbot._internal.plugins.selection:Plugins selected: Authenticator dns-hostingnl, Installer None
+2024-12-08 08:53:44,774:DEBUG:acme.client:Sending GET request to https://acme-v02.api.letsencrypt.org/directory.
+2024-12-08 08:53:44,776:DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): acme-v02.api.letsencrypt.org:443
+2024-12-08 08:53:45,264:DEBUG:urllib3.connectionpool:https://acme-v02.api.letsencrypt.org:443 "GET /directory HTTP/11" 200 746
+2024-12-08 08:53:45,265:DEBUG:acme.client:Received response:
+HTTP 200
+Server: nginx
+Date: Sun, 08 Dec 2024 07:53:45 GMT
+Content-Type: application/json
+Content-Length: 746
+Connection: keep-alive
+Cache-Control: public, max-age=0, no-cache
+X-Frame-Options: DENY
+Strict-Transport-Security: max-age=604800
+
+{
+  "KQvfeAWNcJU": "https://community.letsencrypt.org/t/adding-random-entries-to-the-directory/33417",
+  "keyChange": "https://acme-v02.api.letsencrypt.org/acme/key-change",
+  "meta": {
+    "caaIdentities": [
+      "letsencrypt.org"
+    ],
+    "termsOfService": "https://letsencrypt.org/documents/LE-SA-v1.4-April-3-2024.pdf",
+    "website": "https://letsencrypt.org"
+  },
+  "newAccount": "https://acme-v02.api.letsencrypt.org/acme/new-acct",
+  "newNonce": "https://acme-v02.api.letsencrypt.org/acme/new-nonce",
+  "newOrder": "https://acme-v02.api.letsencrypt.org/acme/new-order",
+  "renewalInfo": "https://acme-v02.api.letsencrypt.org/draft-ietf-acme-ari-03/renewalInfo",
+  "revokeCert": "https://acme-v02.api.letsencrypt.org/acme/revoke-cert"
+}
+2024-12-08 08:53:46,589:DEBUG:acme.client:Requesting fresh nonce
+2024-12-08 08:53:46,590:DEBUG:acme.client:Sending HEAD request to https://acme-v02.api.letsencrypt.org/acme/new-nonce.
+2024-12-08 08:53:46,779:DEBUG:urllib3.connectionpool:https://acme-v02.api.letsencrypt.org:443 "HEAD /acme/new-nonce HTTP/11" 200 0
+2024-12-08 08:53:46,779:DEBUG:acme.client:Received response:
+HTTP 200
+Server: nginx
+Date: Sun, 08 Dec 2024 07:53:46 GMT
+Connection: keep-alive
+Cache-Control: public, max-age=0, no-cache
+Link: <https://acme-v02.api.letsencrypt.org/directory>;rel="index"
+Replay-Nonce: Uqfi4Yot3jgQAGX2CZxuVbJqoEu5usRFzeVmxY0BrzUixKWMYhw
+X-Frame-Options: DENY
+Strict-Transport-Security: max-age=604800
+
+
+2024-12-08 08:53:46,779:DEBUG:acme.client:Storing nonce: Uqfi4Yot3jgQAGX2CZxuVbJqoEu5usRFzeVmxY0BrzUixKWMYhw
+2024-12-08 08:53:46,779:DEBUG:acme.client:JWS payload:
+b'{\n  "contact": [\n    "mailto:jordy.kuhne@gmail.com"\n  ],\n  "termsOfServiceAgreed": true\n}'
+2024-12-08 08:53:46,781:DEBUG:acme.client:Sending POST request to https://acme-v02.api.letsencrypt.org/acme/new-acct:
+{
+  "protected": "eyJhbGciOiAiUlMyNTYiLCAiandrIjogeyJuIjogInd5MzZpamhSbm8tRnNYRXpTa3lxZklmOFlTQ20xTDhKalZ3WktvVVlFWmJyMXJ3bVBIS3hkeWhVUUd5Nnl3M1l0WDU2YkhKZnVwSjQxNU5lVVliSWJPUTVjNGtQcnBpMkNhcU9KYzVzVGZ4TFEtOHJhOEJiVU03Nlc5OHByaWk5NGJySnN2SzZjS0d5VDRsSGk4VVhVUTB5eVBKVnZ3TEtPQkFtNWlCS0lIN2NTeUd0cndKYnFDZzkwaXpEcmhmZF96blJMeHlFRk9wQXNjTzdVLWh5TUJSY3VUMFNiUFQ0ei1OQUcyU2FRN092NXdhcmdVN3ZQZDdGNFpnVTNEWV96NDZRdEM2bmUxWkZCa2ZiWklVQjhMaURla2VUZ2hwZUdwOU5XN0ZfYUtsYUpJZjh6YUs4R1Bwb0lWX29LOUNDRmRLWE5NbzFSUENLMGRKNEZacDFudyIsICJlIjogIkFRQUIiLCAia3R5IjogIlJTQSJ9LCAibm9uY2UiOiAiVXFmaTRZb3QzamdRQUdYMkNaeHVWYkpxb0V1NXVzUkZ6ZVZteFkwQnJ6VWl4S1dNWWh3IiwgInVybCI6ICJodHRwczovL2FjbWUtdjAyLmFwaS5sZXRzZW5jcnlwdC5vcmcvYWNtZS9uZXctYWNjdCJ9",
+  "signature": "j6gAeTYyvR90yHtffNbAjRXUKlxpcB_uQFe775bhAdhbRNgdLSz5utUHcvaN0lNTWXWfjVRUtL1P0NBRzrJlXeL2AR704vCZIHkdbSLdeNKuh73dQWiQ3j46APYvcUPbWvNyKLEh4WqWTaYwGPOmjQz_nY8H0EBE0_CzvDcON4H08_-LeqhXJV1YmP-gptt0zJ6XcJ9Ht_vRr5XOtDeUcG1Z3vN11BVEy3eqeEku4orJrur8j7igrg3R3GsX_5H7fgCsFEIQAuSjlppIUFs8XYA7aKH4fxclvWL_1qWd0wooWZCBo5VzRWTKG_T8j6Z4dMkUe7sg_maUfztJrHsQgg",
+  "payload": "ewogICJjb250YWN0IjogWwogICAgIm1haWx0bzpqb3JkeS5rdWhuZUBnbWFpbC5jb20iCiAgXSwKICAidGVybXNPZlNlcnZpY2VBZ3JlZWQiOiB0cnVlCn0"
+}
+2024-12-08 08:53:47,066:DEBUG:urllib3.connectionpool:https://acme-v02.api.letsencrypt.org:443 "POST /acme/new-acct HTTP/11" 201 531
+2024-12-08 08:53:47,067:DEBUG:acme.client:Received response:
+HTTP 201
+Server: nginx
+Date: Sun, 08 Dec 2024 07:53:46 GMT
+Content-Type: application/json
+Content-Length: 531
+Connection: keep-alive
+Boulder-Requester: 2100829187
+Cache-Control: public, max-age=0, no-cache
+Link: <https://acme-v02.api.letsencrypt.org/directory>;rel="index", <https://letsencrypt.org/documents/LE-SA-v1.4-April-3-2024.pdf>;rel="terms-of-service"
+Location: https://acme-v02.api.letsencrypt.org/acme/acct/2100829187
+Replay-Nonce: Uqfi4YotLgdLFmwG88Hcl7iSYdgdft_521k7gT2t5_1DPT9p8HY
+X-Frame-Options: DENY
+Strict-Transport-Security: max-age=604800
+
+{
+  "key": {
+    "kty": "RSA",
+    "n": "wy36ijhRno-FsXEzSkyqfIf8YSCm1L8JjVwZKoUYEZbr1rwmPHKxdyhUQGy6yw3YtX56bHJfupJ415NeUYbIbOQ5c4kPrpi2CaqOJc5sTfxLQ-8ra8BbUM76W98prii94brJsvK6cKGyT4lHi8UXUQ0yyPJVvwLKOBAm5iBKIH7cSyGtrwJbqCg90izDrhfd_znRLxyEFOpAscO7U-hyMBRcuT0SbPT4z-NAG2SaQ7Ov5wargU7vPd7F4ZgU3DY_z46QtC6ne1ZFBkfbZIUB8LiDekeTghpeGp9NW7F_aKlaJIf8zaK8GPpoIV_oK9CCFdKXNMo1RPCK0dJ4FZp1nw",
+    "e": "AQAB"
+  },
+  "contact": [
+    "mailto:jordy.kuhne@gmail.com"
+  ],
+  "createdAt": "2024-12-08T07:53:46.90146291Z",
+  "status": "valid"
+}
+2024-12-08 08:53:47,067:DEBUG:acme.client:Storing nonce: Uqfi4YotLgdLFmwG88Hcl7iSYdgdft_521k7gT2t5_1DPT9p8HY
+2024-12-08 08:53:48,494:DEBUG:certbot._internal.display.obj:Notifying user: Account registered.
+2024-12-08 08:53:48,494:DEBUG:certbot._internal.main:Picked account: <Account(RegistrationResource(body=Registration(key=JWKRSA(key=<ComparableRSAKey(<cryptography.hazmat.bindings._rust.openssl.rsa.RSAPublicKey object at 0x72464a7d7fd0>)>), contact=('mailto:jordy.kuhne@gmail.com',), agreement=None, status='valid', terms_of_service_agreed=None, only_return_existing=None, external_account_binding=None), uri='https://acme-v02.api.letsencrypt.org/acme/acct/2100829187', new_authzr_uri=None, terms_of_service='https://letsencrypt.org/documents/LE-SA-v1.4-April-3-2024.pdf'), 49686d4a00bb846cabfc370a840666c8, Meta(creation_dt=datetime.datetime(2024, 12, 8, 7, 53, 47, tzinfo=<UTC>), creation_host='ThinkPad-P16s', register_to_eff=None))>
+2024-12-08 08:53:48,495:DEBUG:certbot._internal.display.obj:Notifying user: Requesting a certificate for tech7fox.nl
+2024-12-08 08:53:48,497:DEBUG:acme.client:JWS payload:
+b'{\n  "identifiers": [\n    {\n      "type": "dns",\n      "value": "tech7fox.nl"\n    }\n  ]\n}'
+2024-12-08 08:53:48,497:DEBUG:acme.client:Sending POST request to https://acme-v02.api.letsencrypt.org/acme/new-order:
+{
+  "protected": "eyJhbGciOiAiUlMyNTYiLCAia2lkIjogImh0dHBzOi8vYWNtZS12MDIuYXBpLmxldHNlbmNyeXB0Lm9yZy9hY21lL2FjY3QvMjEwMDgyOTE4NyIsICJub25jZSI6ICJVcWZpNFlvdExnZExGbXdHODhIY2w3aVNZZGdkZnRfNTIxazdnVDJ0NV8xRFBUOXA4SFkiLCAidXJsIjogImh0dHBzOi8vYWNtZS12MDIuYXBpLmxldHNlbmNyeXB0Lm9yZy9hY21lL25ldy1vcmRlciJ9",
+  "signature": "RFmrV6AOoP7fH-wVnBGZwUkD3wH73VUUhYXJMHkCcvWYpX4-xWJPCfAcuKv6X0QlHRguSGZcs3maH7L2VW2WlqJfs8vVQcmrg1sdH9QvbzDNjYCf4jk0iMeFs7qtsWlJ5SrLKs_6Gx6CYTVy2Z8e62L-LtfNQE1bur9vqjhJwi4zqLIeqjaco35krUH-vGW4kpxd5OzGPJet5MwxpGHo28A6MheVH4J0FRS51sFx6sfGTUH0KRtJF7M0ouJ5VxsERoz5fopHvEcjuzvQCKtJhqVJdvtBF3kXB2keLr80IQ8j6OMSrES_qC5uKlkQHsMruG5XHSbDqHbp5-Uq6ZCJKg",
+  "payload": "ewogICJpZGVudGlmaWVycyI6IFsKICAgIHsKICAgICAgInR5cGUiOiAiZG5zIiwKICAgICAgInZhbHVlIjogInRlY2g3Zm94Lm5sIgogICAgfQogIF0KfQ"
+}
+2024-12-08 08:53:48,905:DEBUG:urllib3.connectionpool:https://acme-v02.api.letsencrypt.org:443 "POST /acme/new-order HTTP/11" 429 306
+2024-12-08 08:53:48,905:DEBUG:acme.client:Received response:
+HTTP 429
+Server: nginx
+Date: Sun, 08 Dec 2024 07:53:48 GMT
+Content-Type: application/problem+json
+Content-Length: 306
+Connection: keep-alive
+Boulder-Requester: 2100829187
+Cache-Control: public, max-age=0, no-cache
+Link: <https://acme-v02.api.letsencrypt.org/directory>;rel="index", <https://letsencrypt.org/docs/rate-limits>;rel="help"
+Replay-Nonce: Uqfi4Yoto-38_Ra4k53-fMl2JQNtt4rFicufDQFm0MXptQz6-cw
+Retry-After: 120777
+
+{
+  "type": "urn:ietf:params:acme:error:rateLimited",
+  "detail": "too many certificates (5) already issued for this exact set of domains in the last 168h0m0s, retry after 2024-12-09 17:26:45 UTC: see https://letsencrypt.org/docs/rate-limits/#new-certificates-per-exact-set-of-hostnames",
+  "status": 429
+}
+2024-12-08 08:53:48,905:DEBUG:certbot._internal.log:Exiting abnormally:
+Traceback (most recent call last):
+  File "/home/jordyk/repositories/personal/certbot-dns-hostingnl/vendor/bin/certbot", line 8, in <module>
+    sys.exit(main())
+             ^^^^^^
+  File "/home/jordyk/repositories/personal/certbot-dns-hostingnl/vendor/lib/python3.12/site-packages/certbot/main.py", line 19, in main
+    return internal_main.main(cli_args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jordyk/repositories/personal/certbot-dns-hostingnl/vendor/lib/python3.12/site-packages/certbot/_internal/main.py", line 1876, in main
+    return config.func(config, plugins)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jordyk/repositories/personal/certbot-dns-hostingnl/vendor/lib/python3.12/site-packages/certbot/_internal/main.py", line 1578, in certonly
+    lineage = _get_and_save_cert(le_client, config, domains, certname, lineage)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jordyk/repositories/personal/certbot-dns-hostingnl/vendor/lib/python3.12/site-packages/certbot/_internal/main.py", line 142, in _get_and_save_cert
+    lineage = le_client.obtain_and_enroll_certificate(domains, certname)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jordyk/repositories/personal/certbot-dns-hostingnl/vendor/lib/python3.12/site-packages/certbot/_internal/client.py", line 517, in obtain_and_enroll_certificate
+    cert, chain, key, _ = self.obtain_certificate(domains)
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jordyk/repositories/personal/certbot-dns-hostingnl/vendor/lib/python3.12/site-packages/certbot/_internal/client.py", line 428, in obtain_certificate
+    orderr = self._get_order_and_authorizations(csr.data, self.config.allow_subset_of_names)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jordyk/repositories/personal/certbot-dns-hostingnl/vendor/lib/python3.12/site-packages/certbot/_internal/client.py", line 478, in _get_order_and_authorizations
+    orderr = self.acme.new_order(csr_pem)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jordyk/repositories/personal/certbot-dns-hostingnl/vendor/lib/python3.12/site-packages/acme/client.py", line 137, in new_order
+    response = self._post(self.directory['newOrder'], order)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jordyk/repositories/personal/certbot-dns-hostingnl/vendor/lib/python3.12/site-packages/acme/client.py", line 365, in _post
+    return self.net.post(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jordyk/repositories/personal/certbot-dns-hostingnl/vendor/lib/python3.12/site-packages/acme/client.py", line 738, in post
+    return self._post_once(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jordyk/repositories/personal/certbot-dns-hostingnl/vendor/lib/python3.12/site-packages/acme/client.py", line 751, in _post_once
+    response = self._check_response(response, content_type=content_type)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jordyk/repositories/personal/certbot-dns-hostingnl/vendor/lib/python3.12/site-packages/acme/client.py", line 602, in _check_response
+    raise messages.Error.from_json(jobj)
+acme.messages.Error: urn:ietf:params:acme:error:rateLimited :: There were too many requests of a given type :: too many certificates (5) already issued for this exact set of domains in the last 168h0m0s, retry after 2024-12-09 17:26:45 UTC: see https://letsencrypt.org/docs/rate-limits/#new-certificates-per-exact-set-of-hostnames
+2024-12-08 08:53:48,912:ERROR:certbot._internal.log:An unexpected error occurred:
+2024-12-08 08:53:48,912:ERROR:certbot._internal.log:too many certificates (5) already issued for this exact set of domains in the last 168h0m0s, retry after 2024-12-09 17:26:45 UTC: see https://letsencrypt.org/docs/rate-limits/#new-certificates-per-exact-set-of-hostnames
