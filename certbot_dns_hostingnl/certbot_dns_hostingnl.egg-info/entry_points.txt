@@ -1,2 +1,0 @@
-[certbot.plugins]
-dns-hostingnl = certbot_dns_hostingnl._internal.dns_hostingnl:Authenticator
