@@ -2,6 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='certbot-dns-hostingnl',
+    url='https://github.com/TECH7Fox/certbot-dns-hostingnl',
     use_scm_version=True,
     setup_requires=['setuptools_scm'],
     long_description=open('README.md').read(),
